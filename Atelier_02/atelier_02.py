@@ -15,46 +15,23 @@ from PySide6.QtWidgets import (
     QLabel,
     QLineEdit,
 )
-
-
-
-
-
-        # Donne un nom à mon objet MainWindow
-    
-
-
-
-      
+          
 json_file = sys.argv[1]
 print(json_file)
 
 try: 
     # Chargement des données du fichier .json reçu en paramètre
+
     file = open(json_file)
     data = json.load(file)
     print(type(data))
-except:
+except Exception as error:
     print(f"Could not load data from {json_file}")
+
      
 for i in data:
-    for k in i.values():
-        print(f"     - {k}")
+    print("Keys\n")
+    for k in i.keys():
+        print(f"        - {k}")
 
 
-
-# Début de l'application
-# Fonction main qui démarre l'application
-
-
-
-# app = QApplication(sys.argv)
-
-# window = MainWindow()
-
-#     # Affichage de ma fenêtre principale car elle est cachée par défaut.
-# window.show()
-#     sys.exit(app.exec())
-
-# if __name__ == "__main__":
-#     main()
