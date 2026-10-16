@@ -85,17 +85,8 @@ class RandomGenerator(QWidget):
         grid_layout.addWidget(self.min_scale, 5, 1)
         grid_layout.addWidget(self.max_scale, 5, 2)
 
-
-        
         # Ajouter les layouts au layout principal
-
         layout.addLayout(grid_layout)
-        
-        
-        
-        
-        
-                
         
         # Mon code fin
 
@@ -106,17 +97,55 @@ class RandomGenerator(QWidget):
     
 
     def create_object(self):
-        forme = random.choice(["cube", "cylindre", "sphere"])
 
-        if forme == "cube":
-            objet = cmds.polyCube()[0]
-        elif forme == "cylindre":
-            objet = cmds.polyCylinder()[0]
-        else:
-            objet = cmds.polySphere()[0]
+        # MON CODE
 
-        random_value = random.uniform(-10, 10)
-        cmds.move(random_value, random_value, random_value, objet)
+        # Récupere nombre d'objet
+        number_objects = int(self.number_objects_field.text())
+
+        # Récupère les valeurs des positions
+        min_x_value = float(self.min_x.text())
+        max_x_value = float(self.max_x.text())
+
+        min_y_value = float(self.min_y.text())
+        max_y_value = float(self.max_y.text())
+
+        min_z_value = float(self.min_z.text())
+        max_z_value = float(self.max_z.text())
+
+        # Récupère scale
+        min_scale_value = float(self.min_scale.text())
+        max_scale_value = float(self.max_scale.text())
+
+
+        # Boucle pour créer les objets selon le nombre rentré
+        for elements in range(number_objects):
+
+        # MON CODE FIN
+
+            forme = random.choice(["cube", "cylindre", "sphere"])
+
+            if forme == "cube":
+                objet = cmds.polyCube()[0]
+            elif forme == "cylindre":
+                objet = cmds.polyCylinder()[0]
+            else:
+                objet = cmds.polySphere()[0]
+
+            # MON CODE
+            random_x = random.uniform(min_x_value, max_x_value)
+            random_y = random.uniform(min_y_value, max_y_value)
+            random_z = random.uniform(min_z_value, max_z_value)
+
+            cmds.move(random_x, random_y, random_z, objet)
+
+            random_scale = random.uniform(min_scale_value, max_scale_value)
+
+            cmds.scale(random_scale, random_scale, random_scale, objet)
+            # MON CODE FIN
+
+            # random_value = random.uniform(-10, 10)
+            
 
 
 def main():
