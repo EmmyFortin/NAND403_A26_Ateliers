@@ -14,8 +14,8 @@ import importlib
 import ui_atelier
 
 # Version sans double import
-MyClass = importlib.reload(ui_atelier).RandomAnim
-
+importlib.reload(ui_atelier)
+# si sa fonctionne pas mettre comme ca dans variable MyClass = importlib.reload(ui_atelier).RandomAnim et juste besoin de call la variable (ligne 33)
 # Version double import
 #from ui_atelier import RandomAnim
 
@@ -30,7 +30,7 @@ def main():
         tool_window.close()
     except Exception:
         pass
-    tool_window = MyClass()
+    tool_window = ui_atelier.RandomAnim()
     tool_window.show()
 
 main()
