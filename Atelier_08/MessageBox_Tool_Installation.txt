@@ -5,16 +5,16 @@ Procédure d'installation de l'outil MessageBox :
 3. Ouvrir une scène Maya et ouvrir le Script Editor
 4. Coller le code dans l'onglet python sur Script Editor.
 5. Sélectionner tout le code dans le Script Editor (CTRL + A)
-6. Maintenez la mollette de la souris appuyée et glisser le code sélectionné dans le shelf de votre choix
-7. Appuyer sur l'icon qui vient de s'ajouter dans le shelf afin de s'assurer que l'outil fonctionne. 
+6. Maintenez la molette de la souris appuyée et glissez le code sélectionné dans le shelf de votre choix
+7. Appuyer sur l'icône qui vient de s'ajouter dans le shelf afin de s'assurer que l'outil fonctionne. 
 
-Afin de rendre votre outil reconnaissable ajouter lui un icon.
+Afin de rendre votre outil reconnaissable, ajoutez-lui une icône.
 
 8. Aller dans \Documents\maya\2027\scripts et créer un nouveau dossier nommé icons.
-9. Ajouter votre icon dans se dossier et copier son chemin d'accès.
-10. Faites un clic droit sur l'icon de l'outil dans le shelf et cliquer sur Edit pour ouvrir le Shelf Editor.
-11. Dans l'onglet Shelves dans le champ Icon Name coller le chemin d'accès de l'icon et appuyer sur Save All Shelves avant de fermer le Shelf Editor.
-12. L'icon que vous avez mis devrait être affichée.
-13. Fermer et réouvrer Maya afin de vous assurer que l'icon est bien installé.
+9. Ajouter votre icône dans ce dossier et copier son chemin d'accès.
+10. Faites un clic droit sur l'icône de l'outil dans le shelf et cliquez sur Edit pour ouvrir le Shelf Editor.
+11. Dans l'onglet Shelves dans le champ Icon Name coller le chemin d'accès de l'icône et appuyer sur Save All Shelves avant de fermer le Shelf Editor.
+12. L'icône que vous avez mise devrait être affichée.
+13. Fermer puis réouvrir Maya afin de vous assurer que l'icône est bien installée.
 
 
