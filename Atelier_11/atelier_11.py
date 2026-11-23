@@ -67,9 +67,15 @@ class RockMaker(QDialog):
 
     def create_rock(self, subdivisions, amplitude, frequency, seed):
         # étape 1 : créer une sphère
-        sphere = cmds.polySphere()[0]
+        sphere_rock = cmds.polySphere(radius = 5, subdivisionsAxis = subdivisions, subdivisionsHeight = subdivisions, name= "sphere" )[0]
+        rock_vert = cmds.polyEvaluate("sphere", vertex=True)
+        print(rock_vert)
 
         # étape 2 : faire une for loop sur chacun des vertices
+        for rock_vert in sphere_rock:
+            print("S")
+
+        
       
 
         # étape 3 : déplacer chaque vertex avec un valeur aléatoire (get_bump)
