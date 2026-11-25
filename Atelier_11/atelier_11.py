@@ -24,6 +24,9 @@ def maya_main_window():
 class RockMaker(QDialog):
     def __init__(self):
         super().__init__(maya_main_window())
+        self.setWindowFlags(Qt.Window)
+        self.sphere_rock = None
+
         self.setWindowTitle("Rock Maker")
         self.setMinimumWidth(260)
         self.build_ui()
@@ -55,6 +58,7 @@ class RockMaker(QDialog):
         row.addWidget(slider)
         row.addWidget(value_label)
         form.addRow(name, row)
+        slider.valueChanged.connect(self.update_rock)
         return slider
 
     def make_rock(self):
@@ -65,23 +69,60 @@ class RockMaker(QDialog):
             self.seed_slider.value(),
         )
 
+    def update_rock(self):
+        # Check si la rock existe déjà
+        if self.sphere_rock and cmds.objExists(self.sphere_rock):
+            cmds.delete(self.sphere_rock)
+
+            # Crée une nouvelle roche
+            self.make_rock()
+
     def create_rock(self, subdivisions, amplitude, frequency, seed):
+
         # étape 1 : créer une sphère
-        sphere_rock = cmds.polySphere(radius = 5, subdivisionsAxis = subdivisions, subdivisionsHeight = subdivisions, name= "sphere" )[0]
-        rock_vert = cmds.polyEvaluate("sphere", vertex=True)
-        print(rock_vert)
+        self.sphere_rock = cmds.polySphere(
+            radius = 5, 
+            subdivisionsAxis = subdivisions,
+            subdivisionsHeight = subdivisions, 
+            name= "Rock_01"
+        )[0]
+
+        # Récupère le nombre de vertices de la roche
+        rock_vertex = cmds.polyEvaluate(self.sphere_rock, vertex=True)
 
         # étape 2 : faire une for loop sur chacun des vertices
-        for rock_vert in sphere_rock:
-            print("S")
+        for element in range(rock_vertex):
+            vertex = f"{self.sphere_rock}.vtx[{element}]"
 
-        
-      
+            # Récupère la position du vertex
+            x, y, z = cmds.xform(
+                vertex,
+                query = True,
+                translation=True,
+                objectSpace=True
+            )
 
-        # étape 3 : déplacer chaque vertex avec un valeur aléatoire (get_bump)
-        pass
+            # étape 3 : déplacer chaque vertex avec un valeur aléatoire (get_bump)
+            bump = self.get_bump(x, y, z, frequency, seed)
 
-    def get_bump(x, y, z, frequency, seed):
+            # Calcul la déformation aléatoire 
+            deformation = 1 + bump * amplitude
+
+            # Déformation
+            cmds.xform(
+                vertex,
+                translation=(
+                    x * deformation,
+                    y * deformation,
+                    z * deformation
+                ),
+                objectSpace= True
+            )
+
+
+
+
+    def get_bump(self, x, y, z, frequency, seed):
         return (math.sin(x * frequency + seed)
                 + math.sin(y * frequency + seed * 2)
                 + math.sin(z * frequency + seed * 3)) / 3
